@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet" 
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+    crossorigin="anonymous">
+    <style>
+        body {
+
+            background: url(backg3.jpg) no-repeat;
+      background-size: cover;
+            /* background-color: slategray;
+            height: 650px;
+            background-size: cover; */
+
+            position: relative;
+        }
+        #modal-container {
+            position: absolute;
+            text-align: center !important;
+            width: 100vw;
+            background-color: rgba(121, 121, 121, 0.426);
+            height: 100vh;
+            z-index: 3;
+        }
+        .hidden {
+            display: none;
+        }
+        #modal-container>div .card {
+            background-color: white !important;
+        }
+        table {
+            margin: 50px auto;
+            width: 1000px;
+            /* background: linear-gradient(90deg,pink,blue, cyan, red); */
+            border-radius: 10px;
+        }
+        th{
+            text-align: center;
+            border: 2px solid gray;
+            padding: 10px;
+            color: black;
+        }
+        td{
+            color: white;
+            border: 2px solid gray;
+            text-align: center;
+        }
+        img{
+            width:100px;
+            height:100px;
+        }
+        h4{
+            color: chartreuse;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h4>Data Saved Successfully :)</h4>
+   <div class="text-center text-light"> <a href="./login.html">
+    <button class="btn btn-primary mt-4">Log out</button></a></div>
+     
+    <table >
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            <th>Last Name</th>
+            <th>Phone Number</th>
+            <th>Images</th>
+            <th>DOB</th>
+            <th>Gender</th>
+            <th>Adhar No</th>
+            <!-- <th>file</th> -->
+        </tr>
+        
+    </thead>
+<tbody>
+
+</tbody>    
+</table>
+<div class="text-center text-light"> <a href="./StudentForm2.html"></div>
+
+    <!-- <button class="btn btn-primary mt-4 mb-3">Back</button></a> -->
+
+    <script>
+        
+        const tbody =document.querySelector('tbody');
+        const user=JSON.parse(localStorage.getItem('users'));
+        console.log(user);
+        
+        
+    function createRow(user) {  
+        for(let i=0;i<user.length;i++){
+            let tr=document.createElement('tr');
+            for(let key in user[i]){
+              let td = document.createElement('td');
+              if(key === 'file'){
+              let img=  document.createElement('img');
+              img.src=`${user[i][key]}`
+              console.log(img);
+               td.appendChild(img);
+             tr.appendChild(td);
+              }
+              else{
+              td.innerText=user[i][key];
+              tr.appendChild(td);}
+              
+            }
+            tbody.appendChild(tr);           
+        } 
+        document.querySelector('table').appendChild(tbody);
+    
+        }
+        createRow(user);
+        
+    
+    </script>
+</body>
+</html>
